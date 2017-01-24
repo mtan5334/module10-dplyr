@@ -1,4 +1,4 @@
-# Exercise 1: Data Frame Practice
+# Module 10 Exercise 1: Data Frame Practice
 
 # Install devtools package: allows installations from GitHub
 install.packages('devtools')
@@ -10,17 +10,21 @@ devtools::install_github("hadley/fueleconomy")
 library(fueleconomy)
 
 # You should now have access to the `vehicles` data.frame
+View(vehicles)
 
-
-# Select the different manufacturers (makes) of the cars in this data set.
+# Select the different manufacturers (make) of the cars in this data set.
+vehicles$make
 
 
 # Use the `unique()` function to determine how many different car manufacturers
 # are represented by the data set.
+length(unique(vehicles$make))
 
 
 # Filter the data set for vehicles manufactured in 1997
-
+# compare 1 column with each row that matches 1997
+vehicles.1997 <- vehicles[vehicles$year == 1997, ]
+print(vehicles.1997)
 
 # Arrange the 1997 cars by highway (`hwy`) gas milage
 # Hint: use the `order()` function similar to how you would use the `max()` function.
@@ -29,7 +33,8 @@ library(fueleconomy)
 
 # Mutate the 1997 cars data frame to add a column `average` that has the average gas milage between
 # city and highway for each car
-
+vehicles$average <- (vehicles$cty + vehicles$hwy)/2
+vehicles
 
 # Filter the whole vehicles data set for 2-Wheel Drive vehicles that get more than 20 miles/gallon in the city
 # Save this new data frame in a variable.
